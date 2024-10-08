@@ -112,14 +112,10 @@ local Section = Tab:AddSection({
 })
 
 
-local HttpService = game:GetService("HttpService")
-local Players = game:GetService("Players")
-local player = Players.LocalPlayer
-
 local currentLink = ""
 
 Tab:AddTextbox({
-    Name = "Fast script",
+    Name = "Fastscript",
     Default = "Enter script link here",
     TextDisappear = false,
     Callback = function(Value)
@@ -131,22 +127,14 @@ Tab:AddButton({
     Name = "Add",
     Callback = function()
         if currentLink and currentLink ~= "" then
-            local success, response = pcall(function()
-                return HttpService:GetAsync(currentLink) -- Fetch the script from the link
+            local success, errorMessage = pcall(function()
+                loadstring(game:HttpGet(currentLink))() -- Directly execute the fetched script
             end)
 
-            if success then
-                local loadSuccess, loadError = pcall(loadstring(response)) -- Load and execute the script
-                if not loadSuccess then
-                    game.StarterGui:SetCore("SendNotification", {
-                        Title = "Execution Error",
-                        Text = "Error executing script: " .. loadError,
-                    })
-                end
-            else
+            if not success then
                 game.StarterGui:SetCore("SendNotification", {
-                    Title = "Fetch Error",
-                    Text = "Error fetching script: " .. response,
+                    Title = "Execution Error",
+                    Text = "Error executing script: " .. errorMessage,
                 })
             end
         else
@@ -159,7 +147,7 @@ Tab:AddButton({
 })
 
 
-Tab:AddLabel("How to use. get a link or script make sure the link")
+Tab:AddLabel("How to use. get a link make sure the link")
 Tab:AddLabel("has a script then put it in Fastscript Click Add")
 
 
