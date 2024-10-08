@@ -34,7 +34,7 @@ local countryFlags = {
     PH = "🇵🇭",
     US = "🇺🇸",
     GB = "🇬🇧",
-    NO = "🇳🇴",
+    IN = "🇮🇳",
     -- Add more country codes and flags as needed
 }
 
