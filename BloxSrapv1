@@ -50,8 +50,6 @@ else
 end
 
 
-
-
 -- tab2
 
 
@@ -101,20 +99,56 @@ Tab:AddSlider({
 	end    
 })
 
-
-
-
-
-
-
-
-
-
-
-
-
-
 -- tab3
+
+local Tab = Window:MakeTab({
+	Name = "Fastscript",
+	Icon = "rbxassetid://4483345998",
+	PremiumOnly = false
+})
+
+local Section = Tab:AddSection({
+	Name = "Wip"
+})
+
+
+Tab:AddTextbox({
+    Name = "Fastscript",
+    Default = "",
+    TextDisappear = false,
+    Callback = function(Value)
+        print(Value)
+        currentScript = Value
+    end	  
+})
+
+Tab:AddButton({
+    Name = "Add Fastscript",
+    Callback = function()
+        if currentScript then
+            local success, err = pcall(loadstring(currentScript))
+            if not success then
+                game.StarterGui:SetCore("SendNotification", {
+                Title = "Notification",
+                Text = "Error Fastscript Loading"..er})
+            end
+        else
+            game.StarterGui:SetCore("SendNotification", {
+            Title = "Notification",
+            Text = "No script provide" })
+        end
+    end    
+})
+
+
+Tab:AddLabel("How to use. get a link or script make sure the link")
+Tab:AddLabel("has a script then put it in Fastscript Click Add Fast script")
+
+
+
+
+
+-- tab4
 
 
 local Tab = Window:MakeTab({
@@ -129,7 +163,21 @@ local Section = Tab:AddSection({
 
 
 
--- tab4
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+-- tab5
 
 
 local Tab = Window:MakeTab({
