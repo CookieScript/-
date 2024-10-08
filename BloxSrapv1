@@ -112,37 +112,55 @@ local Section = Tab:AddSection({
 })
 
 
+local HttpService = game:GetService("HttpService")
+local Players = game:GetService("Players")
+local player = Players.LocalPlayer
+
+local currentLink = ""
+
 Tab:AddTextbox({
-    Name = "Fastscript",
-    Default = "",
+    Name = "Fast script",
+    Default = "Enter script link here",
     TextDisappear = false,
     Callback = function(Value)
-        print(Value)
-        currentScript = Value
+        currentLink = Value -- Store the link for later use
     end	  
 })
 
 Tab:AddButton({
-    Name = "Add Fastscript",
+    Name = "Add",
     Callback = function()
-        if currentScript then
-            local success, err = pcall(loadstring(currentScript))
-            if not success then
+        if currentLink and currentLink ~= "" then
+            local success, response = pcall(function()
+                return HttpService:GetAsync(currentLink) -- Fetch the script from the link
+            end)
+
+            if success then
+                local loadSuccess, loadError = pcall(loadstring(response)) -- Load and execute the script
+                if not loadSuccess then
+                    game.StarterGui:SetCore("SendNotification", {
+                        Title = "Execution Error",
+                        Text = "Error executing script: " .. loadError,
+                    })
+                end
+            else
                 game.StarterGui:SetCore("SendNotification", {
-                Title = "Notification",
-                Text = "Error Fastscript Loading"..er})
+                    Title = "Fetch Error",
+                    Text = "Error fetching script: " .. response,
+                })
             end
         else
             game.StarterGui:SetCore("SendNotification", {
-            Title = "Notification",
-            Text = "No script provide" })
+                Title = "Input Error",
+                Text = "No script link provided.",
+            })
         end
     end    
 })
 
 
 Tab:AddLabel("How to use. get a link or script make sure the link")
-Tab:AddLabel("has a script then put it in Fastscript Click Add Fast script")
+Tab:AddLabel("has a script then put it in Fastscript Click Add")
 
 
 
