@@ -1,0 +1,37 @@
+local OrionLib = loadstring(game:HttpGet(('https://raw.githubusercontent.com/Unknownkellymc1/Orion/main/source')))()
+
+local Window = OrionLib:MakeWindow({Name = "BloxSrap", Intro = "v1.0.0",HidePremium = false, SaveConfig = true, ConfigFolder = "OrionTest"})
+
+-- notification
+
+OrionLib:MakeNotification({
+	Name = "Notification",
+	Content = "BloxSrap",
+	Image = "rbxassetid://4483345998",
+	Time = 10
+})
+
+-- tab1
+
+
+local Tab = Window:MakeTab({
+	Name = "Main",
+	Icon = "rbxassetid://4483345998",
+	PremiumOnly = false
+})
+
+local Section = Tab:AddSection({
+	Name = "Info"
+})
+
+
+Tab:AddLabel("Flag "")
+
+
+
+
+
+
+
+
+
