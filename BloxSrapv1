@@ -36,7 +36,7 @@ local Tab = Window:MakeTab({
 })
 
 local Section = Tab:AddSection({
-	Name = "Wip"
+	Name = "Mods"
 })
 
 
@@ -76,6 +76,18 @@ Tab:AddSlider({
 })
 
 
+Tab:AddButton({
+	Name = "fly",
+	Callback = function()
+        PremiumOnly = false
+      		loadstring(game:HttpGet("https://raw.githubusercontent.com/XNEOFF/FlyGuiV3/main/FlyGuiV3.txt"))()
+  	end    
+})
+
+
+
+
+
 -- tab3
 
 
@@ -105,13 +117,11 @@ local Section = Tab:AddSection({
 })
 
 
-Tab:AddToggle({
-	Name = "Bannable",
-	Default = true,
-	Callback = function(Value)
-		print("bannable")
-	end    
-})
+
+
+
+
+
 
 
 
