@@ -26,6 +26,32 @@ local Section = Tab:AddSection({
 
 Tab:AddLabel("Username: "..Player.Name.." ")
 
+local LocalizationService = game:GetService("LocalizationService")
+local Players = game:GetService("Players")
+local player = Players.LocalPlayer
+
+local countryFlags = {
+    PH = "🇵🇭",
+    US = "🇺🇸",
+    GB = "🇬🇧",
+    NO = "🇳🇴",
+    -- Add more country codes and flags as needed
+}
+
+local success, countryCode = pcall(function()
+    return LocalizationService:GetCountryRegionForPlayerAsync(player)
+end)
+
+if success then
+    local countryFlag = countryFlags[countryCode] or "🏳️" -- Default flag if not found
+    Tab:AddLabel("Flag: " .. countryFlag)
+else
+    print("GetCountryRegionForPlayerAsync failed: " .. countryCode)
+end
+
+
+
+
 -- tab2
 
 
@@ -76,13 +102,13 @@ Tab:AddSlider({
 })
 
 
-Tab:AddButton({
-	Name = "fly",
-	Callback = function()
-        PremiumOnly = false
-      		loadstring(game:HttpGet("https://raw.githubusercontent.com/XNEOFF/FlyGuiV3/main/FlyGuiV3.txt"))()
-  	end    
-})
+
+
+
+
+
+
+
 
 
 
