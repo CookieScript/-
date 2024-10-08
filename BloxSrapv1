@@ -1,12 +1,12 @@
 local OrionLib = loadstring(game:HttpGet(('https://raw.githubusercontent.com/Unknownkellymc1/Orion/main/source')))()
-
-local Window = OrionLib:MakeWindow({Name = "BloxSrap", Intro = "v1.0.0",HidePremium = false, SaveConfig = true, ConfigFolder = "OrionTest"})
+local Player = game.Players.LocalPlayer
+local Window = OrionLib:MakeWindow({Name = "BloxSrap", IntroText = "v1.0.0",HidePremium = false, SaveConfig = true, ConfigFolder = "OrionTest"})
 
 -- notification
 
 OrionLib:MakeNotification({
 	Name = "Notification",
-	Content = "BloxSrap",
+	Content = "welcome "..Player.Name.." to BloxSrap",
 	Image = "rbxassetid://4483345998",
 	Time = 10
 })
@@ -24,8 +24,143 @@ local Section = Tab:AddSection({
 	Name = "Info"
 })
 
+Tab:AddLabel("Username: "..Player.Name.." ")
 
-Tab:AddLabel("Flag "")
+-- tab2
+
+
+local Tab = Window:MakeTab({
+	Name = "Mods",
+	Icon = "rbxassetid://4483345998",
+	PremiumOnly = false
+})
+
+local Section = Tab:AddSection({
+	Name = "Wip"
+})
+
+
+Tab:AddButton({
+	Name = "Stretch screen",
+	Callback = function()
+
+
+local Camera = workspace.CurrentCamera
+if getgenv().gg_scripters == nil then
+    game:GetService("RunService").RenderStepped:Connect(
+        function()
+            Camera.CFrame = Camera.CFrame * CFrame.new(0, 0, 0, 1, 0, 0, 0, getgenv().Resolution[".gg/scripters"], 0, 0, 0, 1)
+        end
+    )
+end
+getgenv().gg_scripters = "Aori0001"
+
+
+  	end    
+})
+
+
+Tab:AddSlider({
+	Name = "Resolution",
+	Min = 0,
+	Max = 1,
+	Default = 5,
+	Color = Color3.fromRGB(255,255,255),
+	Increment = 0.01,
+	ValueName = "Value",
+	Callback = function(Value)
+	        getgenv().Resolution = {
+    [".gg/scripters"] = Value
+}
+	end    
+})
+
+
+-- tab3
+
+
+local Tab = Window:MakeTab({
+	Name = "Behavior",
+	Icon = "rbxassetid://4483345998",
+	PremiumOnly = false
+})
+
+local Section = Tab:AddSection({
+	Name = "Wip"
+})
+
+
+
+-- tab4
+
+
+local Tab = Window:MakeTab({
+	Name = "Settings",
+	Icon = "rbxassetid://4483345998",
+	PremiumOnly = false
+})
+
+local Section = Tab:AddSection({
+	Name = "Wip"
+})
+
+
+Tab:AddToggle({
+	Name = "Bannable",
+	Default = true,
+	Callback = function(Value)
+		print("bannable")
+	end    
+})
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
