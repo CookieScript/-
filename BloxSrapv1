@@ -99,6 +99,59 @@ Tab:AddSlider({
 	end    
 })
 
+
+local Section = Tab:AddSection({
+	Name = "fflag"
+})
+
+
+Tab:AddButton({
+	Name = "⚠️when excute read the warning⚠️ fflag Freeze",
+	Callback = function()
+
+
+game.StarterGui:SetCore("SendNotification", {
+    Title = "Notification",
+    Text = "Keybind: Z",
+})
+
+game.StarterGui:SetCore("SendNotification", {
+    Title = "⚠️Warning⚠️",
+    Text = "when turn on and rejoining will not fix the freezing problem",
+})
+
+
+
+
+local UserInputService = game:GetService("UserInputService")
+local flagSet = false  -- skibidi dop jk lol
+
+UserInputService.InputBegan:Connect(function(input, gameProcessedEvent)
+    if input.KeyCode == Enum.KeyCode.Z and not gameProcessedEvent then
+        if not flagSet then
+            setfflag("S2PhysicsSenderRate", "-1")
+            flagSet = true
+            game.StarterGui:SetCore("SendNotification", {
+                Title = "fflag",
+                Text = "Freeze"
+            })
+        else
+            setfflag("S2PhysicsSenderRate", "999")
+            flagSet = false
+            game.StarterGui:SetCore("SendNotification", {
+                Title = "fflag",
+                Text = "unFreeze"
+            })
+        end
+    end
+end)
+
+	end    
+})
+
+
+
+
 -- tab3
 
 local Tab = Window:MakeTab({
