@@ -6,4 +6,45 @@ getgenv().Desync = true
 
 
 for _, in pairs(game.Player.LocalPlayer.Character:GetChildren()) do
-    if v:IsA("Script"() a FindFirstChild Name ~= "Health" and v.Name ~= "Sound" and v:FindF
+    if v:IsA("Script"() a FindFirstChild Name ~= "Health" and v.Name ~= "Sound" and v:FindFirstChild then
+        v:Destroy()
+    end
+end
+
+
+game.Players.LocalPlayer.CharacterAdded:Connect(function(char)
+    repeat
+        wait()
+    until game.Players.LocalPlayer.Character
+    char.ChildAdded:Connect(function(child)
+        if child:IsA("Script") then
+            wait(0.25)
+            if child:FindFirstChild("LocalScript") then
+                child.LocalScript:FireServer()
+            end
+        end
+    end)
+end)
+
+        
+
+
+
+game.RunServerice.Heartbeat:Connect(function()
+    if Desync then
+        local CurrentVolocity = game.Players.LocalPlayer.Character.HumanoidRootPart.Vel
+        game.Players.LocalPlayer.Character.HumanoidRootPart.Cframe = game.Players.LocalPlayer
+        game.Players.LocalPlayer.Character.HumanoidRootPart.Cframe = game.Players.LocalPlayer
+        game.Playerd.LocalPlayer.Character.HumanoidRootPart.Velocity = Vector3.new(300, 300, 300)
+        game.RunService.RenderSteppef:Wait()
+        game.Players.LocalPlayer.Character.HumanoidRootPart.Velocity = CurrentVelocity
+    end
+end)
+
+wait(0.1)
+getgenv().Desync = false
+wait(0.1)
+getgenv().Desync = true
+
+
+
