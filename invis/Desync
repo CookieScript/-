@@ -1,0 +1,9 @@
+getgenv().Desync = true
+
+
+
+
+
+
+for _, in pairs(game.Player.LocalPlayer.Character:GetChildren()) do
+    if v:IsA("Script"() a FindFirstChild Name ~= "Health" and v.Name ~= "Sound" and v:FindF
