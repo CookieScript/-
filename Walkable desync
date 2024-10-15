@@ -1,0 +1,37 @@
+getgenv().antiAimbotEnabled = true  -- Automatically enable anti-aimbot
+getgenv().aimbotSettings = {
+    X = -90,
+    Y = 60,
+    Z = 50
+}
+
+-- Ultra-Complex Anti-Aimbot functionality
+game:GetService("RunService").Heartbeat:Connect(function()
+    if getgenv().antiAimbotEnabled then
+        local character = game.Players.LocalPlayer.Character
+        if character and character:FindFirstChild("HumanoidRootPart") then
+            local humanoidRootPart = character.HumanoidRootPart
+            local originalVelocity = humanoidRootPart.Velocity
+
+            -- Ultra-complex randomization (simplified for debugging)
+            local time = tick()
+            local baseOffset = Vector3.new(
+                getgenv().aimbotSettings.X + math.sin(time * 50) * 300,
+                getgenv().aimbotSettings.Y + math.cos(time * 150) * 400,
+                getgenv().aimbotSettings.Z + math.sin(time * 200) * 500
+            )
+            
+            local noisePattern = Vector3.new(
+                (math.random() * 2000 - 999) * (math.sin(time * 100) * 0.6),
+                (math.random() * 2900 - 999) * (math.cos(time * 100) * 0.6),
+                (math.random() * 2000 - 950) * (math.sin(time * 200) * 0.6)
+            )
+            
+            -- Apply patterns
+            local modifiedVelocity = baseOffset + noisePattern
+            humanoidRootPart.Velocity = modifiedVelocity
+            game:GetService("RunService").RenderStepped:Wait()
+            humanoidRootPart.Velocity = originalVelocity
+        end
+    end
+end)
